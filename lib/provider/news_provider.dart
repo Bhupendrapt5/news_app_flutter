@@ -14,9 +14,34 @@ class NewsProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String _domainName = '';
+  String get currentDomain => _domainName;
+
+  void setDomainName(String domain) {
+    _domainName = domain;
+  }
+
+  String _category = 'Business';
+
+  String get newsCategory => _category;
+
+  void setNewsCategory(String category) {
+    _category = category;
+    notifyListeners();
+  }
+
+  void resetCategory() {
+    _category = 'Business';
+  }
+
   final NewsApi _newsApi = NewsApi();
 
   Future<ResponseModel> getHeadLines() {
     return _newsApi.getTopHeadLines(channelName: sources[getChannel]);
+  }
+
+  Future<ResponseModel> getChannelNews() {
+    return _newsApi.getChannelNews(
+        category: newsCategory, domainName: domainsMap[currentDomain]);
   }
 }

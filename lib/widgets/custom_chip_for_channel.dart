@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_news/provider/news_provider.dart';
 import 'package:provider/provider.dart';
 
-class CustomChip extends StatelessWidget {
+class CustomChipForNewsChannel extends StatelessWidget {
   final String label;
 
-  const CustomChip({Key key, @required this.label}) : super(key: key);
+  const CustomChipForNewsChannel({Key key, @required this.label})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<NewsProvider>(

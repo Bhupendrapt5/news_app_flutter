@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:my_news/constantans.dart';
 import 'package:my_news/helper/page_transition.dart';
 import 'package:my_news/helper/text_styles.dart';
 import 'package:my_news/model/response_model.dart';
 import 'package:my_news/pages/news_details_page.dart';
 import 'package:my_news/provider/news_provider.dart';
 import 'package:my_news/widgets/app_drawer.dart';
-import 'package:my_news/widgets/custom_chip_for_channel.dart';
+import 'package:my_news/widgets/custom_chip_for_subcategory.dart';
 import 'package:my_news/widgets/news_card_widget.dart';
 import 'package:provider/provider.dart';
 
-class Dashboard extends StatelessWidget {
+import '../constantans.dart';
+
+class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final newsProvider = Provider.of<NewsProvider>(
@@ -19,7 +20,7 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Top Headlines',
+          newsProvider.currentDomain,
           style: OpensansBoldStyle(fontColor: Colors.white),
         ),
         centerTitle: true,
@@ -39,9 +40,9 @@ class Dashboard extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              children: sources.keys
+              children: subCategory
                   .map((newsChannel) =>
-                      CustomChipForNewsChannel(label: newsChannel))
+                      CustomChipForSubCategory(label: newsChannel))
                   .toList(),
             ),
           ),
@@ -64,13 +65,11 @@ class Dashboard extends StatelessWidget {
                       child: NewsCardWidget(),
                       onTap: () {
                         Navigator.push(
-                          context,
-                          SlideRightRoute(
-                            page: NewsInDetail(
+                            context,
+                            SlideRightRoute(
+                                page: NewsInDetail(
                               model: articles[i],
-                            ),
-                          ),
-                        );
+                            )));
                       },
                     ),
                   ),
@@ -78,7 +77,7 @@ class Dashboard extends StatelessWidget {
                 ),
               );
             },
-            future: newsProvider.getHeadLines(),
+            future: newsProvider.getChannelNews(),
           )),
         ],
       ),
