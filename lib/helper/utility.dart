@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 
 class Utility {
@@ -13,5 +14,14 @@ class Utility {
   String getReadableText({String date}) {
     var localDate = DateTime.parse(date).toLocal();
     return DateFormat.jm().addPattern('dd-MMM-yy').format(localDate);
+  }
+
+  String parseHtmlString(String htmlString) {
+    print('htmlString : $htmlString');
+    var document = parse(htmlString);
+
+    String parsedString = parse(document.body.text).documentElement.text;
+
+    return parsedString;
   }
 }

@@ -9,6 +9,9 @@ class NewsModel with ChangeNotifier {
   final String title;
   final String description;
   final String url;
+  @JsonKey(
+      defaultValue:
+          'https://cdn4.wpbeginner.com/wp-content/uploads/2013/04/wp404error.jpg')
   final String urlToImage;
   final String publishedAt;
   final String content;

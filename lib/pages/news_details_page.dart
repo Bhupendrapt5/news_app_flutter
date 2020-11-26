@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:my_news/helper/text_styles.dart';
 import 'package:my_news/helper/utility.dart';
 import 'package:my_news/model/news_model.dart';
 import 'package:my_news/widgets/platform_circle_indicator.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsInDetail extends StatelessWidget {
   final NewsModel model;
@@ -85,12 +87,39 @@ class NewsInDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     model.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                     style: OpensansBoldStyle(
                       size: 15 * _utility.getTexfactor(context),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: _utility
+                          .parseHtmlString(model.content ?? model.description)
+                          .replaceAll(RegExp(r'\[\+\d*\s*\w*\]'), ''),
+                      style: OpensansStyle(
+                          size: 13 * _utility.getTexfactor(context)),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '\nRead the full story here..',
+                          style: OpensansBoldStyle(
+                            fontColor: Colors.indigo,
+                            size: 13 * _utility.getTexfactor(context),
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () async {
+                              print('tapped');
+                              await launch(model.url);
+                            },
+                        )
+                      ],
                     ),
                   ),
                 ],

@@ -94,7 +94,7 @@ class NewsCardWidget extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    model.description,
+                    model.description ?? model.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: OpensansStyle(
