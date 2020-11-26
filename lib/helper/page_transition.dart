@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Transition page with slide animation
 class SlideRightRoute extends PageRouteBuilder {
   final Widget page;
   SlideRightRoute({this.page})

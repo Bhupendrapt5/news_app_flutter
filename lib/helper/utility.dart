@@ -16,6 +16,7 @@ class Utility {
     return DateFormat.jm().addPattern('dd-MMM-yy').format(localDate);
   }
 
+  //Parsing HTML string to String 
   String parseHtmlString(String htmlString) {
     var document = parse(htmlString);
     String parsedString = parse(document.body.text).documentElement.text;
