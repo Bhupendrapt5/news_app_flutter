@@ -7,7 +7,7 @@ const Map<String, String> sources = {
   'MSNBC': 'msnbc',
   'AP': 'associated-press',
   'Time': 'time',
-  'The Times of India"': 'the-times-of-india',
+  'The Times of India': 'the-times-of-india',
   'The Hindu': 'the-hindu',
   'Google News (IN)': 'google-news-in',
 };
