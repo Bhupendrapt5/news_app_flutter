@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_news/constantans.dart';
+import 'package:my_news/helper/text_styles.dart';
 import 'package:my_news/model/response_model.dart';
+import 'package:my_news/pages/news_details_page.dart';
 import 'package:my_news/provider/news_provider.dart';
 import 'package:my_news/widgets/custom_chip.dart';
+import 'package:my_news/widgets/news_card_widget.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
@@ -13,7 +16,10 @@ class Dashboard extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text('News'),
+        title: Text(
+          'Top Headlines',
+          style: OpensansBoldStyle(fontColor: Colors.white),
+        ),
         centerTitle: true,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -25,8 +31,8 @@ class Dashboard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            height: AppBar().preferredSize.height * 1.2,
-            padding: const EdgeInsets.all(8.0),
+            height: AppBar().preferredSize.height,
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -44,11 +50,28 @@ class Dashboard extends StatelessWidget {
                 );
               }
               var articles = snapshot.data.articles;
-              return ListView.builder(
-                itemBuilder: (context, i) => ListTile(
-                  title: Text(articles[i].title),
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                child: ListView.builder(
+                  itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                    value: articles[i],
+                    child: GestureDetector(
+                      child: NewsCardWidget(),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewsInDetail(
+                              model: articles[i],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  itemCount: articles.length,
                 ),
-                itemCount: articles.length,
               );
             },
             future: newsProvider.getHeadLines(),

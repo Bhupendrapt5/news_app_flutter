@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'news_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class NewsModel {
+class NewsModel with ChangeNotifier {
   final String author;
   final String title;
   final String description;

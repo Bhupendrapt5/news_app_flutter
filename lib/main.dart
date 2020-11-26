@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_news/dashobard.dart';
+import 'package:my_news/pages/dashobard.dart';
 import 'package:my_news/provider/news_provider.dart';
 import 'package:provider/provider.dart';
 
