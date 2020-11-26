@@ -4,7 +4,7 @@ import 'package:my_news/constantans.dart';
 import 'package:my_news/model/response_model.dart';
 
 class NewsProvider with ChangeNotifier {
-  String _newsChannel = 'CNN';
+  String _newsChannel = 'Buzzfeed';
 
   String get getChannel => _newsChannel;
 

@@ -4,6 +4,7 @@ import 'package:my_news/helper/page_transition.dart';
 import 'package:my_news/helper/text_styles.dart';
 import 'package:my_news/model/response_model.dart';
 import 'package:my_news/pages/news_details_page.dart';
+import 'package:my_news/pages/news_webview.dart';
 import 'package:my_news/provider/news_provider.dart';
 import 'package:my_news/widgets/app_drawer.dart';
 import 'package:my_news/widgets/custom_chip_for_channel.dart';
@@ -66,7 +67,7 @@ class Dashboard extends StatelessWidget {
                         Navigator.push(
                           context,
                           SlideRightRoute(
-                            page: NewsInDetail(
+                            page: NewsWebview(
                               model: articles[i],
                             ),
                           ),

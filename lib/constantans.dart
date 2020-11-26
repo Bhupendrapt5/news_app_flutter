@@ -1,7 +1,7 @@
 const Map<String, String> sources = {
-  'CNN': 'cnn',
-  'CBS News': 'cbs-news',
   'Buzzfeed': 'buzzfeed',
+  'CBS News': 'cbs-news',
+  'CNN': 'cnn',
   'ESPN': 'espn',
   'Fox News': 'fox-news',
   'MSNBC': 'msnbc',
@@ -12,9 +12,9 @@ const Map<String, String> sources = {
   'Google News (IN)': 'google-news-in',
 };
 const Map<String, String> domainsMap = {
-  'CNN': 'cnn.com',
-  'CBS News': 'cbsnews.com"',
   'Buzzfeed': 'buzzfeed.com',
+  'CBS News': 'cbsnews.com"',
+  'CNN': 'cnn.com',
   'ESPN': 'espn.com',
   'Fox News': 'foxnews.com',
   'MSNBC': 'msnbc.com',
